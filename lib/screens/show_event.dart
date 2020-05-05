@@ -23,7 +23,6 @@ class _EventPageState extends State<EventPage> {
   @override
   void initState() {
     super.initState();
-
     getData();
   }
 
@@ -42,7 +41,7 @@ class _EventPageState extends State<EventPage> {
                     if (snapshot.data.isNotEmpty)
                       return showPet(snapshot?.data);
                     else
-                      return   RaisedButton.icon(
+                      return RaisedButton.icon(
                         label: Text("Add Pet"),
                         onPressed: () {
                           Navigator.push(

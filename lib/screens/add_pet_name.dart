@@ -104,6 +104,9 @@ class _AddPetNameState extends State<AddPetName> {
                               nameController.value.text.toString())
                           .then((data) async {
                         if (data != null) {
+                          setState(() {
+                            isLoading = false;
+                          });
                           PetData petData = PetData.fromJson(data);
 
                           await Injector.prefs.setString(
@@ -111,11 +114,11 @@ class _AddPetNameState extends State<AddPetName> {
 
                           Injector.petData = petData;
 
-                          getPetBloc.getPet();
+                          //getPetBloc.getPet();
 
                           Utils.showToast("Pet added successfully");
 
-                          Navigator.pop(context);
+                          navigateToHome(context);
                         }
                       }).catchError((e) {
                         Utils.showToast(e);
@@ -129,7 +132,7 @@ class _AddPetNameState extends State<AddPetName> {
               )
             ],
           ),
-          loadingIndicator()
+          Center(child: loadingIndicator())
         ],
       ),
     );

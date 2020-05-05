@@ -25,7 +25,8 @@ class AuthorizationBloc {
 
   void openSession(String accessToken, String refreshToken) async {
     if (accessToken != null) {
-      await Injector.prefs.setString(PrefKeys.accessToken, accessToken);
+     // await Injector.prefs.setString(PrefKeys.accessToken, accessToken);
+      await Injector.updateAuthData(accessToken);
       Injector.accessToken = accessToken;
     }
     if (refreshToken != null) {

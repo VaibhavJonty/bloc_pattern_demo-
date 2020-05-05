@@ -338,8 +338,8 @@ class RegisterPageState extends State<RegisterPage> {
         if (refreshTokenResponse != null) {
           print('refreshTokenResponse.access' + refreshTokenResponse.access);
           AuthorizationBloc authorizationBloc = AuthorizationBloc();
-          authorizationBloc.openSession(
-              refreshTokenRequest.refresh, refreshTokenResponse.access);
+          authorizationBloc.openSession( refreshTokenResponse.access,
+              refreshTokenRequest.refresh);
 
           navigateToHome(context);
         }
