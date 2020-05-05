@@ -290,16 +290,21 @@ class RegisterPageState extends State<RegisterPage> {
           .then((data) async {
         SignUpResponse signUpResponse = SignUpResponse.fromJson(data);
 
-//        RefreshTokenRequest refreshTokenRequest =
-//            RefreshTokenRequest(refresh: signUpResponse.refresh);
+        RefreshTokenRequest refreshTokenRequest =
+            RefreshTokenRequest(refresh: signUpResponse.refresh);
 
         print(jsonEncode(signUpResponse.toJson()));
 
         if (signUpResponse != null)
-          Navigator.pop(context);
-        else {}
+          {
+            print('signUpResponse.refresh '+signUpResponse.refresh);
+            refreshToken(refreshTokenRequest);
+          }
+          else {
+            Utils.showToast('Something went wrong, please try again!');
+        }
 
-//        refreshToken(refreshTokenRequest);
+
       }).catchError((e) {
         setState(() {
           isLoading = false;
@@ -331,6 +336,7 @@ class RegisterPageState extends State<RegisterPage> {
         });
 
         if (refreshTokenResponse != null) {
+          print('refreshTokenResponse.access' + refreshTokenResponse.access);
           AuthorizationBloc authorizationBloc = AuthorizationBloc();
           authorizationBloc.openSession(
               refreshTokenRequest.refresh, refreshTokenResponse.access);
@@ -351,7 +357,7 @@ class RegisterPageState extends State<RegisterPage> {
     Navigator.pushAndRemoveUntil(
         context,
         MaterialPageRoute(
-          builder: (context) => AddPetPhoto(),
+          builder: (context) => AddPetName(),
         ),
         ModalRoute.withName("/register"));
   }

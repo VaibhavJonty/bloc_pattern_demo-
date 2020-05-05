@@ -51,7 +51,7 @@ class WebApi {
     String authorizationHeader =
         Injector.accessToken != null ? 'Bearer ' + Injector.accessToken : null;
 
-//    print("accessToken " + authorizationHeader??"");
+    //print("accessToken " + authorizationHeader??"");
 
     if (type == Const.get) {
       acceptHeader = 'application/json';
